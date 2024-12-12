@@ -9,13 +9,13 @@ import requests
 from dotenv import load_dotenv
 import io
 
-# Load environment variables
+
 load_dotenv()
 
-# Enhanced Configuration and Styling
+
 st.set_page_config(page_title="Facial Recognition System", layout="wide")
 
-# Custom CSS inspired by the HTML design
+
 st.markdown("""
     <style>
         :root {
@@ -70,14 +70,14 @@ PINATA_JWT_TOKEN = os.getenv('PINATA_JWT_TOKEN')
 PINATA_API_URL = "https://api.pinata.cloud/pinning/pinFileToIPFS"
 PINATA_GATEWAY = "https://gateway.pinata.cloud/ipfs/"
 
-# Attendance CSV
+
 ATTENDANCE_FILE = "Attendance.csv"
 
-# Navigation
+
 nav_options = ["Home", "Attendance System", "Features", "About"]
 selected_nav = st.sidebar.radio("Navigation", nav_options)
 
-# Home Section
+
 if selected_nav == "Home":
     st.markdown("<h1>Facial Recognition Technology</h1>", unsafe_allow_html=True)
     st.markdown("""
@@ -89,7 +89,7 @@ if selected_nav == "Home":
     - Secure and privacy-focused technology
     """)
 
-# Features Section
+
 elif selected_nav == "Features":
     st.markdown("<h2>Key Features</h2>", unsafe_allow_html=True)
     
@@ -105,20 +105,20 @@ elif selected_nav == "Features":
             st.markdown(f"### {title}")
             st.write(description)
 
-# Attendance System
+
 elif selected_nav == "Attendance System":
     st.markdown("<h1>SARVADRISHTI</h1>", unsafe_allow_html=True)
 
-    # Initialize session state for attendance buffer
+    
     if 'attendance_buffer' not in st.session_state:
         st.session_state.attendance_buffer = []
 
-    # Sidebar Configuration
+    
     current_date = st.sidebar.date_input("Date", datetime.today())
     current_time = st.sidebar.time_input("Time", datetime.now().time())
     stop_button = st.sidebar.button("Stop Attendance System")
 
-    # Functions for Pinata interaction
+    
     def fetch_from_pinata(cid):
         response = requests.get(f"{PINATA_GATEWAY}{cid}")
         return response.content
@@ -133,7 +133,7 @@ elif selected_nav == "Attendance System":
         response = requests.post(PINATA_API_URL, headers=headers, files=files)
         return response.json()
 
-    # Handle Uploaded Images
+    
     uploaded_image = st.sidebar.file_uploader("Upload Image", type=["jpg", "jpeg", "png"])
     if uploaded_image:
         pinata_response = upload_to_pinata(uploaded_image.getvalue(), uploaded_image.name)
@@ -143,7 +143,7 @@ elif selected_nav == "Attendance System":
         else:
             st.sidebar.error("Failed to upload image to IPFS.")
 
-    # Load Images and Encode Faces
+    
     @st.cache_resource
     def load_images_and_encode():
         images, classNames = [], []
@@ -175,7 +175,7 @@ elif selected_nav == "Attendance System":
     encodeListKnown = find_encodings(images)
     st.sidebar.success(f"Loaded {len(encodeListKnown)} face encodings from IPFS.")
 
-    # Attendance Management
+    
     def load_attendance():
         if not os.path.exists(ATTENDANCE_FILE) or os.stat(ATTENDANCE_FILE).st_size == 0:
             attendance_df = pd.DataFrame(columns=["Name", "Date", "Time"])
@@ -196,13 +196,13 @@ elif selected_nav == "Attendance System":
             attendance_df.to_csv(ATTENDANCE_FILE, index=False)
             st.session_state.attendance_buffer = []
 
-    # Real-Time Camera Feed
+    
     st.markdown("<h2>Tracking System</h2>", unsafe_allow_html=True)
     frame_placeholder = st.empty()
     marked_names = set(attendance_df["Name"].tolist())
 
     cap = cv2.VideoCapture(0)
-    cap.set(cv2.CAP_PROP_BUFFERSIZE, 2)  # Reduce buffer size to improve FPS
+    cap.set(cv2.CAP_PROP_BUFFERSIZE, 2)  
 
     if not cap.isOpened():
         st.warning("Unable to access the camera. Please check your device settings.")
@@ -231,7 +231,7 @@ elif selected_nav == "Attendance System":
                 match_index = np.argmin(face_distances)
                 confidence = 1 - face_distances[match_index]
 
-                if confidence > 0.6:  # High confidence threshold
+                if confidence > 0.6:  
                     name = classNames[match_index]
                     if name not in marked_names:
                         st.session_state.attendance_buffer.append({
@@ -251,7 +251,7 @@ elif selected_nav == "Attendance System":
     cap.release()
     cv2.destroyAllWindows()
 
-# About Section
+
 elif selected_nav == "About":
     st.markdown("<h2>About Our Facial Recognition System</h2>", unsafe_allow_html=True)
     st.markdown("""
@@ -268,7 +268,7 @@ elif selected_nav == "About":
     © 2024 Madhya Pradesh Police
     """)
 
-# Footer
+
 st.markdown("""
     <div class="footer">
         © 2024 Facial Recognition Technology | Powered by Aditya Bhattacharya
