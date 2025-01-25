@@ -5,7 +5,7 @@
 
 # Team Mystique
 
-# Members: Aditya Bhattacharya (Team Lead), Vaibhav, Soumadeep Samanta Arnav Yadav, Aditi Sikder, Mohit Singh
+# Members: Aditya Bhattacharya (Team Lead), Vaibhav, Soumadeep Samanta, Arnav Yadav, Aditi Sikder, Mohit Singh
 
 Sarvadrishti is our solution to the Smnart India Hackathon 2024 Problem Statement - 1788, a facial recognition technology in the Madhya Pradesh police Department.
 
