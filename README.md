@@ -1,4 +1,4 @@
-# 🚀 Sarvadrishti - Facial Recognition for Law Enforcement
+#  Sarvadrishti
 
 **🔹 Smart India Hackathon 2024 | Problem Statement: SIH-1788**  
 **🔹 Organization: Madhya Pradesh Police**  
