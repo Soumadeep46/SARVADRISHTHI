@@ -79,7 +79,7 @@ Ensure you have the following installed:
 ### 🛠 Installation  
 
 ```bash
-git clone https://github.com/Team-Mystique/Sarvadrishti.git
+git clone https://github.com/Soumadeep46/SARVADRISHTHI
 cd Sarvadrishti
 pip install -r requirements.txt
 ```
