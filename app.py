@@ -263,14 +263,14 @@ elif selected_nav == "About":
     - Advanced Machine Learning
     - Continuous Improvement
     
-    ### Developed By
-    Aditya Bhattacharya
+    ### 
     © 2024 Madhya Pradesh Police
     """)
 
 
 st.markdown("""
     <div class="footer">
-        © 2024 Facial Recognition Technology | Powered by Aditya Bhattacharya
+        © 2024 Facial Recognition Technology 
     </div>
 """, unsafe_allow_html=True)
+
